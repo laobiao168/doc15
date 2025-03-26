@@ -1,0 +1,105 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    {:token()}
+    <input type="hidden" name="row[id]" value="{$row.id}">
+    <div class="form-group">
+        <label for="c-username" class="control-label col-xs-12 col-sm-2">{:__('Username')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-username" data-rule="required" class="form-control" name="row[username]" type="text" value="{$row.username|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-nickname" class="control-label col-xs-12 col-sm-2">昵称:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-nickname" data-rule="required" class="form-control" name="row[nickname]" type="text" value="{$row.nickname|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-password" class="control-label col-xs-12 col-sm-2">{:__('Password')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-password" data-rule="password" class="form-control" name="row[password]" type="password" value="" placeholder="{:__('Leave password blank if dont want to change')}" autocomplete="new-password" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-tuendtime" class="control-label col-xs-12 col-sm-2">图库到期时间:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-tuendtime" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[tuendtime]" type="text" value="{$row.tuendtime|datetime}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-bbsendtime" class="control-label col-xs-12 col-sm-2">资料到期时间:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-bbsendtime" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[bbsendtime]" type="text" value="{$row.bbsendtime|datetime}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-mp4endtime" class="control-label col-xs-12 col-sm-2">视频到期时间:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-mp4endtime" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[mp4endtime]" type="text" value="{$row.mp4endtime|datetime}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-remark" class="control-label col-xs-12 col-sm-2">备注:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-remark" data-rule="required" class="form-control" name="row[remark]" type="text" value="{$row.remark}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-whiteip" class="control-label col-xs-12 col-sm-2">IP白名单:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-whiteip" data-rule="required" class="form-control" name="row[whiteip]" type="text" value="{$row.whiteip}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-whiteip" class="control-label col-xs-12 col-sm-2">图库每日次数:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-daytu" data-rule="required" class="form-control" name="row[daytu]" type="number" value="{$row.daytu}" placeholder="0 不限制">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-whiteip" class="control-label col-xs-12 col-sm-2">视频每日次数:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-daymp4" data-rule="required" class="form-control" name="row[daymp4]" type="number" value="{$row.daymp4}" placeholder="0 不限制">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-avatar" class="control-label col-xs-12 col-sm-2">图库透明logo:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-avatar" data-rule="" class="form-control" size="50" name="row[avatar]" type="text" value="{$row.avatar}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-avatar" class="btn btn-danger faupload" data-input-id="c-avatar" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-avatar" class="btn btn-primary fachoose" data-input-id="c-avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-avatar"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-avatar"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-videologo" class="control-label col-xs-12 col-sm-2">视频logo:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-videologo" data-rule="" class="form-control" size="50" name="row[videologo]" type="text" value="{$row.videologo}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="faupload-videologo" class="btn btn-danger faupload" data-input-id="c-videologo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-videologo"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-videologo" class="btn btn-primary fachoose" data-input-id="c-videologo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-videologo"></span>
+            </div>
+            <ul class="row list-inline faupload-preview" id="p-videologo"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-remark" class="control-label col-xs-12 col-sm-2">视频脚本地址:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-videoshelladdr" data-rule="required" class="form-control" name="row[videoshelladdr]" type="text" value="{$row.videoshelladdr}" placeholder="douyin/main2.js">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
